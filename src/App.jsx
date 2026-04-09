@@ -1,75 +1,80 @@
-import { useEffect, useMemo, useState } from 'react'
-import { marked } from 'marked'
-import githubData from './data/github.generated.json'
-import { siteContent } from './data/siteContent'
+import { useEffect, useMemo, useState } from "react";
+import { marked } from "marked";
+import githubData from "./data/github.generated.json";
+import { siteContent } from "./data/siteContent";
+import SoleSpaceDemo from "./components/SoleSpaceDemo";
 
-const blogModules = import.meta.glob('./content/blog/*.md', {
+const blogModules = import.meta.glob("./content/blog/*.md", {
   eager: true,
-  query: '?raw',
-  import: 'default',
-})
+  query: "?raw",
+  import: "default",
+});
 
 function slugify(value) {
   return value
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 function parseFrontmatter(raw) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n?/)
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n?/);
 
   if (!match) {
-    return { meta: {}, body: raw }
+    return { meta: {}, body: raw };
   }
 
-  const meta = {}
-  match[1].split('\n').forEach((line) => {
-    const separatorIndex = line.indexOf(':')
-    if (separatorIndex === -1) return
+  const meta = {};
+  match[1].split("\n").forEach((line) => {
+    const separatorIndex = line.indexOf(":");
+    if (separatorIndex === -1) return;
 
-    const key = line.slice(0, separatorIndex).trim()
-    const value = line.slice(separatorIndex + 1).trim().replace(/^"|"$/g, '')
-    meta[key] = value
-  })
+    const key = line.slice(0, separatorIndex).trim();
+    const value = line
+      .slice(separatorIndex + 1)
+      .trim()
+      .replace(/^"|"$/g, "");
+    meta[key] = value;
+  });
 
   return {
     meta,
     body: raw.slice(match[0].length),
-  }
+  };
 }
 
 function getBlogPosts() {
   return Object.entries(blogModules)
     .map(([path, raw]) => {
-      const { meta, body } = parseFrontmatter(raw)
-      const fileName = path.split('/').pop()?.replace('.md', '') || 'post'
-      const slug = meta.slug || slugify(fileName)
-      const normalizedBody = body.replace(/^#\s+.+\n+/, '')
+      const { meta, body } = parseFrontmatter(raw);
+      const fileName = path.split("/").pop()?.replace(".md", "") || "post";
+      const slug = meta.slug || slugify(fileName);
+      const normalizedBody = body.replace(/^#\s+.+\n+/, "");
 
       return {
         slug,
         title: meta.title || fileName,
-        date: meta.date || '',
-        excerpt: meta.excerpt || '',
+        date: meta.date || "",
+        excerpt: meta.excerpt || "",
         body: normalizedBody,
         html: marked.parse(normalizedBody),
-      }
+      };
     })
-    .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 }
 
 function getCurrentRoute() {
-  const hash = window.location.hash || '#home'
+  const hash = window.location.hash || "#home";
 
-  if (hash.startsWith('#blog/')) {
-    return { page: 'post', slug: hash.replace('#blog/', '') }
+  if (hash.startsWith("#blog/")) {
+    return { page: "post", slug: hash.replace("#blog/", "") };
   }
 
-  if (hash === '#blog') return { page: 'blog' }
-  if (hash === '#projects') return { page: 'projects' }
-  return { page: 'home' }
+  if (hash === "#solespace") return { page: "solespace" };
+  if (hash === "#blog") return { page: "blog" };
+  if (hash === "#projects") return { page: "projects" };
+  return { page: "home" };
 }
 
 function TextLink({ href, children }) {
@@ -77,7 +82,7 @@ function TextLink({ href, children }) {
     <a href={href} target="_blank" rel="noreferrer">
       {children}
     </a>
-  )
+  );
 }
 
 function ProjectFeature({ project }) {
@@ -85,7 +90,7 @@ function ProjectFeature({ project }) {
     <article className="project-feature">
       <div className="project-feature__meta">
         <span>Pinned project</span>
-        <span>{project.primaryLanguage?.name || 'Project'}</span>
+        <span>{project.primaryLanguage?.name || "Project"}</span>
       </div>
 
       <h2>
@@ -103,7 +108,7 @@ function ProjectFeature({ project }) {
         <span>{project.stargazerCount} stars</span>
       </div>
     </article>
-  )
+  );
 }
 
 function ArchiveProject({ project }) {
@@ -115,11 +120,11 @@ function ArchiveProject({ project }) {
             {project.name}
           </a>
         </h3>
-        <p>{project.description || 'Repository in active development.'}</p>
+        <p>{project.description || "Repository in active development."}</p>
       </div>
-      <span>{project.language || 'Project'}</span>
+      <span>{project.language || "Project"}</span>
     </article>
-  )
+  );
 }
 
 function BlogListItem({ post }) {
@@ -131,7 +136,7 @@ function BlogListItem({ post }) {
       </h2>
       {post.excerpt ? <p>{post.excerpt}</p> : null}
     </article>
-  )
+  );
 }
 
 function Topbar({ page }) {
@@ -139,31 +144,87 @@ function Topbar({ page }) {
     <header className="topbar">
       <p className="topbar__name">Nicolas Rosales</p>
       <nav className="topbar__links" aria-label="Primary">
-        <a href="#home" aria-current={page === 'home' ? 'page' : undefined}>
+        <a href="#home" aria-current={page === "home" ? "page" : undefined}>
           Home
         </a>
-        <a href="#projects" aria-current={page === 'projects' ? 'page' : undefined}>
+        <a
+          href="#projects"
+          aria-current={page === "projects" ? "page" : undefined}
+        >
           Projects
         </a>
-        <a href="#blog" aria-current={page === 'blog' || page === 'post' ? 'page' : undefined}>
+        <a
+          href="#blog"
+          aria-current={page === "blog" || page === "post" ? "page" : undefined}
+        >
           Blog
+        </a>
+        <a
+          href="#solespace"
+          aria-current={page === "solespace" ? "page" : undefined}
+        >
+          SoleSpace
         </a>
       </nav>
     </header>
-  )
+  );
+}
+
+const PROJECT_CATEGORIES = {
+  bitsXlamarato: "machine-learning",
+  "ecityclic-recommender": "machine-learning",
+  "Mango-DatathonFME25": "machine-learning",
+  LocalWhisper: "machine-learning",
+  PicSort: "machine-learning",
+  kaggle_exercices: "machine-learning",
+  "Data-science-projects": "machine-learning",
+  me_projecte: "machine-learning",
+  bitsxlamarato25: "machine-learning",
+  CooperGraph: "other",
+  Wisebuy: "other",
+  pomeloGPT: "other",
+  "Promptlo.app": "other",
+  newvisions: "other",
+};
+
+function FilterBar({ active, onChange }) {
+  const filters = [
+    { value: null, label: "All" },
+    { value: "machine-learning", label: "Machine Learning" },
+    { value: "other", label: "Other" },
+  ];
+
+  return (
+    <div className="filter-bar">
+      {filters.map((f) => (
+        <button
+          key={f.label}
+          className={`filter-btn${active === f.value ? " filter-btn--active" : ""}`}
+          onClick={() => onChange(f.value)}
+        >
+          {f.label}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 function HomePage() {
-  const { profile } = githubData
+  const { profile, pinnedProjects } = githubData;
+  const featuredProjects = pinnedProjects.slice(0, 3);
 
   return (
     <main className="site-shell">
       <Topbar page="home" />
 
-      <section className="masthead masthead--home">
+      <section className="masthead">
         <div className="masthead__image-wrap">
           <div className="masthead__image-frame">
-            <img className="masthead__image" src={profile.avatarUrl} alt={profile.name} />
+            <img
+              className="masthead__image"
+              src={profile.avatarUrl}
+              alt={profile.name}
+            />
           </div>
         </div>
 
@@ -175,21 +236,71 @@ function HomePage() {
             <strong>Current:</strong> {siteContent.focus}
           </p>
           <p>
-            <strong>Links:</strong> <TextLink href="https://www.linkedin.com/in/nicolas-rosales-gomez">LinkedIn</TextLink>,{' '}
-            <TextLink href="https://github.com/nicorosaless">GitHub</TextLink>,{' '}
-            <TextLink href="https://devpost.com/nirogo06">Devpost</TextLink>, <a href="/Nicolas Rosales Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            <strong>Links:</strong>{" "}
+            <TextLink href="https://www.linkedin.com/in/nicolas-rosales-gomez">
+              LinkedIn
+            </TextLink>
+            , <TextLink href="https://github.com/nicorosaless">GitHub</TextLink>
+            , <TextLink href="https://devpost.com/nirogo06">Devpost</TextLink>,{" "}
+            <a
+              href="/Nicolas Rosales Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Resume
+            </a>
           </p>
         </div>
       </section>
+
+      <section className="section-block">
+        <div className="section-block__heading">
+          <h2>Awards</h2>
+        </div>
+        <ul className="achievements-list">
+          {siteContent.achievements.map((achievement, i) => (
+            <li key={i} className="achievement-item">
+              <span className="achievement-icon">★</span>
+              <span>{achievement}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="section-block">
+        <div className="section-block__heading">
+          <h2>Selected Work</h2>
+          <p>
+            <a href="#projects">All projects →</a>
+          </p>
+        </div>
+        <div className="project-feature-list">
+          {featuredProjects.map((project) => (
+            <ProjectFeature key={project.name} project={project} />
+          ))}
+        </div>
+      </section>
     </main>
-  )
+  );
 }
 
 function ProjectsPage() {
-  const { pinnedProjects, allProjects, stats } = githubData
+  const { pinnedProjects, allProjects, stats } = githubData;
+  const [activeFilter, setActiveFilter] = useState(null);
+
+  const getCategory = (name) => PROJECT_CATEGORIES[name] || "other";
+
+  const filteredPinned = activeFilter
+    ? pinnedProjects.filter((p) => getCategory(p.name) === activeFilter)
+    : pinnedProjects;
+
   const archiveProjects = allProjects.filter(
     (project) => !pinnedProjects.some((pinned) => pinned.name === project.name),
-  )
+  );
+
+  const filteredArchive = activeFilter
+    ? archiveProjects.filter((p) => getCategory(p.name) === activeFilter)
+    : archiveProjects;
 
   return (
     <main className="site-shell">
@@ -198,11 +309,16 @@ function ProjectsPage() {
       <section className="page-intro">
         <div className="section-block__heading section-block__heading--no-border">
           <h1>Projects</h1>
-          <p>{stats.pinnedCount} featured repositories and a wider public archive.</p>
+          <p>
+            {stats.pinnedCount} featured repositories and a wider public
+            archive.
+          </p>
         </div>
 
+        <FilterBar active={activeFilter} onChange={setActiveFilter} />
+
         <div className="project-feature-list">
-          {pinnedProjects.map((project) => (
+          {filteredPinned.map((project) => (
             <ProjectFeature key={project.name} project={project} />
           ))}
         </div>
@@ -215,13 +331,13 @@ function ProjectsPage() {
         </div>
 
         <div className="archive-project-list">
-          {archiveProjects.map((project) => (
+          {filteredArchive.map((project) => (
             <ArchiveProject key={project.name} project={project} />
           ))}
         </div>
       </section>
     </main>
-  )
+  );
 }
 
 function BlogPage({ posts }) {
@@ -242,7 +358,7 @@ function BlogPage({ posts }) {
         </div>
       </section>
     </main>
-  )
+  );
 }
 
 function BlogPostPage({ post }) {
@@ -262,35 +378,45 @@ function BlogPostPage({ post }) {
         </article>
       </section>
     </main>
-  )
+  );
+}
+
+function SoleSpacePage() {
+  return (
+    <main className="site-shell">
+      <Topbar page="solespace" />
+      <SoleSpaceDemo />
+    </main>
+  );
 }
 
 export default function App() {
-  const posts = useMemo(() => getBlogPosts(), [])
-  const [route, setRoute] = useState(getCurrentRoute)
+  const posts = useMemo(() => getBlogPosts(), []);
+  const [route, setRoute] = useState(getCurrentRoute);
 
   useEffect(() => {
     function handleHashChange() {
-      setRoute(getCurrentRoute())
+      setRoute(getCurrentRoute());
     }
 
-    window.addEventListener('hashchange', handleHashChange)
+    window.addEventListener("hashchange", handleHashChange);
 
     return () => {
-      window.removeEventListener('hashchange', handleHashChange)
-    }
-  }, [])
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
-  if (route.page === 'projects') return <ProjectsPage />
-  if (route.page === 'blog') return <BlogPage posts={posts} />
+  if (route.page === "projects") return <ProjectsPage />;
+  if (route.page === "blog") return <BlogPage posts={posts} />;
+  if (route.page === "solespace") return <SoleSpacePage />;
 
-  if (route.page === 'post') {
-    const post = posts.find((entry) => entry.slug === route.slug)
+  if (route.page === "post") {
+    const post = posts.find((entry) => entry.slug === route.slug);
 
-    if (post) return <BlogPostPage post={post} />
+    if (post) return <BlogPostPage post={post} />;
 
-    return <BlogPage posts={posts} />
+    return <BlogPage posts={posts} />;
   }
 
-  return <HomePage />
+  return <HomePage />;
 }

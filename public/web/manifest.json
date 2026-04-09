@@ -1,0 +1,118 @@
+{
+  "title": "SoleSpace",
+  "subtitle": "Explore a true 2D latent atlas for FashionMNIST.",
+  "description": "Drag the cursor across the atlas to inspect decoded samples, nearest neighbors, and class structure.",
+  "labelNames": [
+    "T-shirt/top",
+    "Trouser",
+    "Pullover",
+    "Dress",
+    "Coat",
+    "Sandal",
+    "Shirt",
+    "Sneaker",
+    "Bag",
+    "Ankle boot"
+  ],
+  "palette": [
+    [
+      255,
+      107,
+      107
+    ],
+    [
+      248,
+      150,
+      30
+    ],
+    [
+      249,
+      199,
+      79
+    ],
+    [
+      144,
+      190,
+      109
+    ],
+    [
+      67,
+      170,
+      139
+    ],
+    [
+      77,
+      150,
+      255
+    ],
+    [
+      94,
+      96,
+      206
+    ],
+    [
+      157,
+      78,
+      221
+    ],
+    [
+      241,
+      91,
+      181
+    ],
+    [
+      173,
+      181,
+      189
+    ]
+  ],
+  "xBounds": [
+    -4.5132,
+    3.6393
+  ],
+  "yBounds": [
+    -6.3504,
+    4.3426
+  ],
+  "atlasImage": "/web/atlas.png",
+  "gridData": "/web/grid.json",
+  "pointsData": "/web/points.json",
+  "sampleSprites": {
+    "src": "/web/samples.png",
+    "tileSize": 28,
+    "columns": 100,
+    "rows": 100
+  },
+  "decodedSprites": {
+    "src": "/web/decoded-grid.png",
+    "tileSize": 28,
+    "columns": 80,
+    "rows": 80
+  },
+  "presets": [
+    {
+      "label": "T-shirt/top",
+      "labelIndex": 0,
+      "x": -0.5518,
+      "y": 1.3533
+    },
+    {
+      "label": "Dress",
+      "labelIndex": 3,
+      "x": 0.0341,
+      "y": 1.0511
+    },
+    {
+      "label": "Sandal",
+      "labelIndex": 5,
+      "x": 0.6971,
+      "y": -0.5102
+    },
+    {
+      "label": "Sneaker",
+      "labelIndex": 7,
+      "x": 1.3275,
+      "y": -1.106
+    }
+  ]
+}
