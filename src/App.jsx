@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { marked } from "marked";
 import githubData from "./data/github.generated.json";
 import { siteContent } from "./data/siteContent";
-import SoleSpaceDemo from "./components/SoleSpaceDemo";
 
 const blogModules = import.meta.glob("./content/blog/*.md", {
   eager: true,
@@ -71,7 +70,7 @@ function getCurrentRoute() {
     return { page: "post", slug: hash.replace("#blog/", "") };
   }
 
-  if (hash === "#solespace") return { page: "solespace" };
+  if (hash === "#solespace") return { page: "projects" };
   if (hash === "#blog") return { page: "blog" };
   if (hash === "#projects") return { page: "projects" };
   return { page: "home" };
@@ -158,12 +157,6 @@ function Topbar({ page }) {
           aria-current={page === "blog" || page === "post" ? "page" : undefined}
         >
           Blog
-        </a>
-        <a
-          href="#solespace"
-          aria-current={page === "solespace" ? "page" : undefined}
-        >
-          SoleSpace
         </a>
       </nav>
     </header>
@@ -381,15 +374,6 @@ function BlogPostPage({ post }) {
   );
 }
 
-function SoleSpacePage() {
-  return (
-    <main className="site-shell">
-      <Topbar page="solespace" />
-      <SoleSpaceDemo />
-    </main>
-  );
-}
-
 export default function App() {
   const posts = useMemo(() => getBlogPosts(), []);
   const [route, setRoute] = useState(getCurrentRoute);
@@ -408,7 +392,6 @@ export default function App() {
 
   if (route.page === "projects") return <ProjectsPage />;
   if (route.page === "blog") return <BlogPage posts={posts} />;
-  if (route.page === "solespace") return <SoleSpacePage />;
 
   if (route.page === "post") {
     const post = posts.find((entry) => entry.slug === route.slug);
