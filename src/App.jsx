@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { marked } from "marked";
 import githubData from "./data/github.generated.json";
 import { siteContent } from "./data/siteContent";
+import SoleSpaceDemo from "./components/SoleSpaceDemo";
 
 const blogModules = import.meta.glob("./content/blog/*.md", {
   eager: true,
@@ -70,10 +71,14 @@ function getCurrentRoute() {
     return { page: "post", slug: hash.replace("#blog/", "") };
   }
 
-  if (hash === "#solespace") return { page: "projects" };
+  if (hash === "#solespace") return { page: "solespace" };
   if (hash === "#blog") return { page: "blog" };
   if (hash === "#projects") return { page: "projects" };
   return { page: "home" };
+}
+
+function isExternalUrl(url) {
+  return /^https?:\/\//.test(url);
 }
 
 function TextLink({ href, children }) {
@@ -85,15 +90,23 @@ function TextLink({ href, children }) {
 }
 
 function ProjectFeature({ project }) {
+  const external = isExternalUrl(project.url);
+  const badge = project.badge || project.primaryLanguage?.name || project.language || "Project";
+  const ctaLabel = project.ctaLabel || (external ? "Repository" : "Open");
+
   return (
-    <article className="project-feature">
+    <article className={`project-feature${project.variant ? ` project-feature--${project.variant}` : ""}`}>
       <div className="project-feature__meta">
-        <span>Pinned project</span>
-        <span>{project.primaryLanguage?.name || "Project"}</span>
+        <span>{project.metaLabel || "Pinned project"}</span>
+        <span>{badge}</span>
       </div>
 
       <h2>
-        <a href={project.url} target="_blank" rel="noreferrer">
+        <a
+          href={project.url}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noreferrer" : undefined}
+        >
           {project.name}
         </a>
       </h2>
@@ -101,25 +114,47 @@ function ProjectFeature({ project }) {
       <p>{project.description}</p>
 
       <div className="project-feature__links">
-        <a href={project.url} target="_blank" rel="noreferrer">
-          Repository
+        <a
+          href={project.url}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noreferrer" : undefined}
+        >
+          {ctaLabel}
         </a>
-        <span>{project.stargazerCount} stars</span>
+        {typeof project.stargazerCount === "number" ? (
+          <span>{project.stargazerCount} stars</span>
+        ) : (
+          <span>{project.footerLabel || "Interactive demo"}</span>
+        )}
       </div>
     </article>
   );
 }
 
 function ArchiveProject({ project }) {
+  const external = isExternalUrl(project.url);
+  const hasHomepage = Boolean(project.homepage);
+
   return (
     <article className="archive-project">
       <div>
         <h3>
-          <a href={project.url} target="_blank" rel="noreferrer">
+          <a
+            href={project.url}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noreferrer" : undefined}
+          >
             {project.name}
           </a>
         </h3>
         <p>{project.description || "Repository in active development."}</p>
+        {hasHomepage ? (
+          <p className="archive-project__homepage">
+            <a href={project.homepage} target="_blank" rel="noreferrer">
+              Website
+            </a>
+          </p>
+        ) : null}
       </div>
       <span>{project.language || "Project"}</span>
     </article>
@@ -153,6 +188,12 @@ function Topbar({ page }) {
           Projects
         </a>
         <a
+          href="#solespace"
+          aria-current={page === "solespace" ? "page" : undefined}
+        >
+          SoleSpace
+        </a>
+        <a
           href="#blog"
           aria-current={page === "blog" || page === "post" ? "page" : undefined}
         >
@@ -163,22 +204,7 @@ function Topbar({ page }) {
   );
 }
 
-const PROJECT_CATEGORIES = {
-  bitsXlamarato: "machine-learning",
-  "ecityclic-recommender": "machine-learning",
-  "Mango-DatathonFME25": "machine-learning",
-  LocalWhisper: "machine-learning",
-  PicSort: "machine-learning",
-  kaggle_exercices: "machine-learning",
-  "Data-science-projects": "machine-learning",
-  me_projecte: "machine-learning",
-  bitsxlamarato25: "machine-learning",
-  CooperGraph: "other",
-  Wisebuy: "other",
-  pomeloGPT: "other",
-  "Promptlo.app": "other",
-  newvisions: "other",
-};
+const PROJECT_CATEGORIES = siteContent.projectCategories || {};
 
 function FilterBar({ active, onChange }) {
   const filters = [
@@ -204,7 +230,19 @@ function FilterBar({ active, onChange }) {
 
 function HomePage() {
   const { profile, pinnedProjects } = githubData;
-  const featuredProjects = pinnedProjects.slice(0, 3);
+  const featuredProjects = [
+    {
+      name: "SoleSpace",
+      description:
+        "Interactive latent-space explorer and decoding demo with a custom atlas, grid projection, and live class ranking.",
+      url: "#solespace",
+      badge: "Interactive demo",
+      metaLabel: "Spotlight",
+      footerLabel: "Open demo",
+      variant: "demo",
+    },
+    ...pinnedProjects.slice(0, 3),
+  ];
 
   return (
     <main className="site-shell">
@@ -303,8 +341,8 @@ function ProjectsPage() {
         <div className="section-block__heading section-block__heading--no-border">
           <h1>Projects</h1>
           <p>
-            {stats.pinnedCount} featured repositories and a wider public
-            archive.
+            {stats.pinnedCount} featured repositories and {stats.projectCount} public
+            repositories in the archive.
           </p>
         </div>
 
@@ -329,6 +367,31 @@ function ProjectsPage() {
           ))}
         </div>
       </section>
+    </main>
+  );
+}
+
+function SoleSpacePage() {
+  return (
+    <main className="site-shell">
+      <Topbar page="solespace" />
+
+      <section className="page-intro">
+        <div className="section-block__heading section-block__heading--no-border">
+          <div>
+            <h1>SoleSpace</h1>
+            <p>
+              An interactive latent-space demo I built to explore decoded output,
+              grid density, and nearest-class rankings.
+            </p>
+          </div>
+          <p>
+            <a href="#projects">Back to projects →</a>
+          </p>
+        </div>
+      </section>
+
+      <SoleSpaceDemo />
     </main>
   );
 }
@@ -391,6 +454,7 @@ export default function App() {
   }, []);
 
   if (route.page === "projects") return <ProjectsPage />;
+  if (route.page === "solespace") return <SoleSpacePage />;
   if (route.page === "blog") return <BlogPage posts={posts} />;
 
   if (route.page === "post") {

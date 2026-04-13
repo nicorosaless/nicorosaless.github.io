@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-09T12:39:17.985Z",
+  "generatedAt": "2026-04-13T12:26:33.780Z",
   "username": "nicorosaless",
   "profile": {
     "name": "Nicolas Rosales",
@@ -146,13 +146,40 @@
   ],
   "allProjects": [
     {
+      "name": "manifoldvisualizer",
+      "description": null,
+      "url": "https://github.com/nicorosaless/manifoldvisualizer",
+      "homepage": null,
+      "language": "Python",
+      "stars": 0,
+      "updatedAt": "2026-04-13T12:25:26Z"
+    },
+    {
       "name": "LocalWhisper",
       "description": "A low latency local transcription app using whisper.cpp model and swift",
       "url": "https://github.com/nicorosaless/LocalWhisper",
       "homepage": "https://local-whisper.netlify.app/",
       "language": "Swift",
+      "stars": 2,
+      "updatedAt": "2026-03-18T12:56:40Z"
+    },
+    {
+      "name": "Promptlo.app",
+      "description": null,
+      "url": "https://github.com/nicorosaless/Promptlo.app",
+      "homepage": null,
+      "language": "Swift",
       "stars": 0,
-      "updatedAt": "2026-02-22T11:52:15Z"
+      "updatedAt": "2026-03-17T23:21:04Z"
+    },
+    {
+      "name": "TensorTonic-Solutions",
+      "description": "My solutions to TensorTonic problems",
+      "url": "https://github.com/nicorosaless/TensorTonic-Solutions",
+      "homepage": null,
+      "language": null,
+      "stars": 0,
+      "updatedAt": "2026-03-13T15:26:04Z"
     },
     {
       "name": "me_projecte",
@@ -218,15 +245,6 @@
       "updatedAt": "2025-11-20T18:19:55Z"
     },
     {
-      "name": "Promptlo.app",
-      "description": null,
-      "url": "https://github.com/nicorosaless/Promptlo.app",
-      "homepage": null,
-      "language": "Swift",
-      "stars": 0,
-      "updatedAt": "2025-10-11T12:28:44Z"
-    },
-    {
       "name": "newvisions",
       "description": null,
       "url": "https://github.com/nicorosaless/newvisions",
@@ -255,7 +273,7 @@
     }
   ],
   "stats": {
-    "projectCount": 12,
+    "projectCount": 14,
     "pinnedCount": 6
   }
 }

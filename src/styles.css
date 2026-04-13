@@ -202,6 +202,13 @@ h3 {
     border: 1px solid rgba(22, 22, 22, 0.1);
 }
 
+.project-feature--demo {
+    background:
+        linear-gradient(135deg, rgba(22, 22, 22, 0.04), rgba(255, 255, 255, 0.66)),
+        rgba(255, 255, 255, 0.58);
+    border-color: rgba(22, 22, 22, 0.14);
+}
+
 .blog-list-item {
     max-width: 760px;
 }
@@ -239,6 +246,11 @@ h3 {
     margin-top: 18px;
 }
 
+.project-feature__meta span:last-child,
+.project-feature__links span {
+    text-align: right;
+}
+
 .archive-project-list {
     display: grid;
     border-top: 1px solid rgba(22, 22, 22, 0.1);
@@ -257,6 +269,11 @@ h3 {
 .archive-project p {
     margin: 0;
     max-width: 58ch;
+}
+
+.archive-project__homepage {
+    margin-top: 8px;
+    font-size: 0.92rem;
 }
 
 .solespace-shell {
