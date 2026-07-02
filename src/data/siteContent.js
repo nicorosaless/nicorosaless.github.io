@@ -1,7 +1,7 @@
 export const siteContent = {
   title: "AI engineer building practical machine learning products.",
   intro:
-    "I am Nicolas Rosales, a 2nd-year AI Engineering student at UPC focused on turning research ideas into useful tools, interactive demos, and hackathon-ready products.",
+    "Descripción pendiente. Aquí irá tu bio.",
   focus:
     "Right now I am working on deep learning algorithms, local-first AI experiences, and product-minded ML systems.",
   email: "nirogo06@gmail.com",
