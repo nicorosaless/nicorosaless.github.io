@@ -6,6 +6,8 @@ import SoleSpaceDemo from "./components/SoleSpaceDemo";
 const RESUME_URL = `${import.meta.env.BASE_URL}${encodeURI("Nicolas Rosales Resume.pdf")}`;
 const GITHUB_URL = siteContent.socialLinks.find((l) => l.label === "GitHub").url;
 const LANG_KEY = "lang";
+const MAPS_URL = `${import.meta.env.BASE_URL}maps/`;
+const MAPS_CODE_URL = "https://github.com/nicorosaless/respirahackathon2026";
 
 function getCurrentRoute() {
   const hash = window.location.hash || "#home";
@@ -42,6 +44,20 @@ function HomePage({ t, lang, onLangChange }) {
       </header>
 
       <p className="intro-body">{t.intro}</p>
+
+      <section className="projects">
+        <h2 className="projects__title">{t.projects}</h2>
+        <p className="projects__item">
+          <strong>{t.mapsTitle}</strong>. {t.mapsText}{" "}
+          <a className="underline-link" href={MAPS_URL}>
+            {t.mapsSlides}
+          </a>
+          {" · "}
+          <a className="underline-link" href={MAPS_CODE_URL} target="_blank" rel="noreferrer">
+            {t.mapsCode}
+          </a>
+        </p>
+      </section>
 
       <section className="contact">
         <a className="underline-link" href={GITHUB_URL} target="_blank" rel="noreferrer">
