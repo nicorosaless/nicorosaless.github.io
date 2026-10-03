@@ -140,16 +140,77 @@ p {
     color: var(--color-fg-32);
 }
 
-.projects__item {
-    margin: 0;
+.post-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
     font-size: 15px;
     line-height: 24px;
+}
+
+.post-link__title {
+    border-bottom: 1px solid var(--color-fg-28);
+}
+
+.post-link:hover .post-link__title {
+    border-bottom-color: var(--color-fg);
+}
+
+.post-link__date {
+    flex: none;
+    font-size: 13px;
+    color: var(--color-fg-48);
+}
+
+/* ── Post con diapositivas ─────────────────────────────────── */
+.site-shell--wide {
+    max-width: 1040px;
+}
+
+.post-date {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: var(--color-fg-48);
+}
+
+.post-lead {
+    max-width: 620px;
+    margin: 0 0 32px;
+    font-size: 16px;
+    line-height: 26px;
     color: var(--color-fg-72);
 }
 
-.projects__item strong {
-    color: var(--color-fg);
-    font-weight: 600;
+.slides-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fbfaf7;
+}
+
+.slides-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.post-note {
+    max-width: 620px;
+    margin: 16px 0 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-fg-48);
+}
+
+.post-actions {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0 0;
+    font-size: 15px;
 }
 
 .contact {

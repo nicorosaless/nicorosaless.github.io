@@ -12,6 +12,7 @@ const MAPS_CODE_URL = "https://github.com/nicorosaless/respirahackathon2026";
 function getCurrentRoute() {
   const hash = window.location.hash || "#home";
   if (hash === "#solespace") return { page: "solespace" };
+  if (hash === "#maps") return { page: "maps" };
   return { page: "home" };
 }
 
@@ -46,17 +47,11 @@ function HomePage({ t, lang, onLangChange }) {
       <p className="intro-body">{t.intro}</p>
 
       <section className="projects">
-        <h2 className="projects__title">{t.projects}</h2>
-        <p className="projects__item">
-          <strong>{t.mapsTitle}</strong>. {t.mapsText}{" "}
-          <a className="underline-link" href={MAPS_URL}>
-            {t.mapsSlides}
-          </a>
-          {" · "}
-          <a className="underline-link" href={MAPS_CODE_URL} target="_blank" rel="noreferrer">
-            {t.mapsCode}
-          </a>
-        </p>
+        <h2 className="projects__title">{t.blog}</h2>
+        <a className="post-link" href="#maps">
+          <span className="post-link__title">{t.mapsTitle}</span>
+          <span className="post-link__date">{t.mapsDate}</span>
+        </a>
       </section>
 
       <section className="contact">
@@ -84,6 +79,32 @@ function SoleSpacePage({ t }) {
   );
 }
 
+function MapsPost({ t }) {
+  return (
+    <article>
+      <a className="back-link" href="#home">
+        ← {t.back}
+      </a>
+      <p className="post-date">{t.mapsDate}</p>
+      <h1 className="post-title">{t.mapsTitle}</h1>
+      <p className="post-lead">{t.mapsLead}</p>
+      <div className="slides-frame">
+        <iframe src={MAPS_URL} title={t.mapsTitle} allow="fullscreen" allowFullScreen loading="lazy" />
+      </div>
+      <p className="post-note">{t.mapsHow}</p>
+      <p className="post-actions">
+        <a className="underline-link" href={MAPS_URL}>
+          {t.mapsOpen}
+        </a>
+        <a className="underline-link" href={MAPS_CODE_URL} target="_blank" rel="noreferrer">
+          {t.mapsCode}
+        </a>
+      </p>
+      <p className="post-note">{t.mapsNext}</p>
+    </article>
+  );
+}
+
 export default function App() {
   const [route, setRoute] = useState(getCurrentRoute);
   const [lang, setLang] = useState(getInitialLang);
@@ -106,11 +127,12 @@ export default function App() {
 
   let page;
   if (route.page === "solespace") page = <SoleSpacePage t={t} />;
+  else if (route.page === "maps") page = <MapsPost t={t} />;
   else page = <HomePage t={t} lang={lang} onLangChange={setLang} />;
 
   return (
     <div className="site">
-      <main className="site-shell">{page}</main>
+      <main className={route.page === "maps" ? "site-shell site-shell--wide" : "site-shell"}>{page}</main>
     </div>
   );
 }
