@@ -6,13 +6,20 @@ import SoleSpaceDemo from "./components/SoleSpaceDemo";
 const RESUME_URL = `${import.meta.env.BASE_URL}${encodeURI("Nicolas Rosales Resume.pdf")}`;
 const GITHUB_URL = siteContent.socialLinks.find((l) => l.label === "GitHub").url;
 const LANG_KEY = "lang";
-const MAPS_URL = `${import.meta.env.BASE_URL}maps/`;
+const HOME_URL = import.meta.env.BASE_URL;
+const MAPS_POST_URL = `${HOME_URL}maps/`;
+const MAPS_SLIDES_URL = `${MAPS_POST_URL}slides/`;
 const MAPS_CODE_URL = "https://github.com/nicorosaless/respirahackathon2026";
 
 function getCurrentRoute() {
+  if (window.location.pathname === MAPS_POST_URL) return { page: "maps" };
   const hash = window.location.hash || "#home";
   if (hash === "#solespace") return { page: "solespace" };
-  if (hash === "#maps") return { page: "maps" };
+  if (hash === "#maps") {
+    // Old links to /#maps land on the post's own path.
+    window.history.replaceState(null, "", MAPS_POST_URL);
+    return { page: "maps" };
+  }
   return { page: "home" };
 }
 
@@ -48,7 +55,7 @@ function HomePage({ t, lang, onLangChange }) {
 
       <section className="projects">
         <h2 className="projects__title">{t.blog}</h2>
-        <a className="post-link" href="#maps">
+        <a className="post-link" href={MAPS_POST_URL}>
           <span className="post-link__title">{t.mapsTitle}</span>
           <span className="post-link__date">{t.mapsDate}</span>
         </a>
@@ -82,7 +89,7 @@ function SoleSpacePage({ t }) {
 function MapsPost({ t }) {
   return (
     <article>
-      <a className="back-link" href="#home">
+      <a className="back-link" href={HOME_URL}>
         ← {t.back}
       </a>
       <p className="post-date">{t.mapsDate}</p>
@@ -93,7 +100,7 @@ function MapsPost({ t }) {
         </p>
       ))}
       <p className="post-actions">
-        <a className="underline-link" href={MAPS_URL}>
+        <a className="underline-link" href={MAPS_SLIDES_URL}>
           {t.mapsSlides}
         </a>
         <a className="underline-link" href={MAPS_CODE_URL} target="_blank" rel="noreferrer">
