@@ -87,20 +87,19 @@ function MapsPost({ t }) {
       </a>
       <p className="post-date">{t.mapsDate}</p>
       <h1 className="post-title">{t.mapsTitle}</h1>
-      <p className="post-lead">{t.mapsLead}</p>
-      <div className="slides-frame">
-        <iframe src={MAPS_URL} title={t.mapsTitle} allow="fullscreen" allowFullScreen loading="lazy" />
-      </div>
-      <p className="post-note">{t.mapsHow}</p>
+      {t.mapsBody.map((paragraph) => (
+        <p className="post-body" key={paragraph}>
+          {paragraph}
+        </p>
+      ))}
       <p className="post-actions">
         <a className="underline-link" href={MAPS_URL}>
-          {t.mapsOpen}
+          {t.mapsSlides}
         </a>
         <a className="underline-link" href={MAPS_CODE_URL} target="_blank" rel="noreferrer">
           {t.mapsCode}
         </a>
       </p>
-      <p className="post-note">{t.mapsNext}</p>
     </article>
   );
 }
@@ -132,7 +131,7 @@ export default function App() {
 
   return (
     <div className="site">
-      <main className={route.page === "maps" ? "site-shell site-shell--wide" : "site-shell"}>{page}</main>
+      <main className="site-shell">{page}</main>
     </div>
   );
 }
