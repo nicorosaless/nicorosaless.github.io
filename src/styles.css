@@ -163,53 +163,25 @@ p {
     color: var(--color-fg-48);
 }
 
-/* ── Post con diapositivas ─────────────────────────────────── */
-.site-shell--wide {
-    max-width: 1040px;
-}
-
+/* ── Post ──────────────────────────────────────────────────── */
 .post-date {
     margin: 0 0 8px;
     font-size: 13px;
     color: var(--color-fg-48);
 }
 
-.post-lead {
+.post-body {
     max-width: 620px;
-    margin: 0 0 32px;
+    margin: 0 0 16px;
     font-size: 16px;
     line-height: 26px;
     color: var(--color-fg-72);
 }
 
-.slides-frame {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #fbfaf7;
-}
-
-.slides-frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-.post-note {
-    max-width: 620px;
-    margin: 16px 0 0;
-    font-size: 14px;
-    line-height: 22px;
-    color: var(--color-fg-48);
-}
-
 .post-actions {
     display: flex;
     gap: 20px;
-    margin: 20px 0 0;
+    margin: 32px 0 0;
     font-size: 15px;
 }
 
