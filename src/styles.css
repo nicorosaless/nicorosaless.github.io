@@ -67,7 +67,7 @@ p {
 }
 
 .site-shell {
-    max-width: 620px;
+    max-width: 860px;
     margin: 0 auto;
     padding: clamp(56px, 10vw, 120px) 24px;
 }
@@ -171,10 +171,9 @@ p {
 }
 
 .post-body {
-    max-width: 620px;
-    margin: 0 0 16px;
-    font-size: 16px;
-    line-height: 26px;
+    margin: 0 0 18px;
+    font-size: 17px;
+    line-height: 28px;
     color: var(--color-fg-72);
 }
 
