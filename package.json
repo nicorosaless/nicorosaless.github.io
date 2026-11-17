@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "fetch:github": "node scripts/fetch-github.mjs"
+    "fetch:github": "node scripts/fetch-github.mjs",
+    "sync": "node scripts/sync-obsidian.mjs",
+    "publish": "node scripts/sync-obsidian.mjs --publish"
   },
   "dependencies": {
     "lucide-react": "^0.511.0",
@@ -15,7 +17,12 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@shikijs/transformers": "^3.23.0",
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^5.4.19"
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.3.3",
+    "shiki": "^3.23.0",
+    "vite": "^5.4.19",
+    "yaml": "^2.9.1"
   }
 }

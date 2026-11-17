@@ -1,0 +1,167 @@
+%-------------------------
+% Resume in LaTeX, based on Jake Gutierrez's template (MIT)
+% https://github.com/jakegut/resume
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[margin=0.5in,top=0.45in,bottom=0.45in]{geometry}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{\item\small{{#1 \vspace{-2pt}}}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, topsep=2pt, itemsep=4pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[topsep=3pt, itemsep=0pt, parsep=1pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Nicolás Rosales} \\ \vspace{1pt}
+    \small \href{mailto:nirogo06@gmail.com}{\underline{nirogo06@gmail.com}} $|$
+    \href{https://nicorosaless.github.io}{\underline{nicorosaless.github.io}} $|$
+    \href{https://www.linkedin.com/in/nicolas-rosales-gomez}{\underline{linkedin.com/in/nicolas-rosales-gomez}} $|$
+    \href{https://github.com/nicorosaless}{\underline{github.com/nicorosaless}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Universitat Politècnica de Catalunya (UPC)}{Barcelona, Spain}
+      {BSc in Artificial Intelligence}{Sep 2024 -- Jun 2028}
+      \resumeItemListStart
+        \resumeItem{Coursework: machine learning, deep learning, NLP, computer vision, robotics, statistics, algorithms}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Data Science Intern (incoming)}{Jan 2027}
+      {Mango -- Product Team}{Barcelona, Spain}
+      \vspace{6pt}
+
+    \resumeSubheading
+      {Software Engineer}{Apr 2026 -- Oct 2026}
+      {Quality Chemicals}{Barcelona, Spain}
+      \resumeItemListStart
+        \resumeItem{Developed full-stack modules of \textbf{Kora} across quality management, document control, regulatory affairs, CRM and HR, from interfaces to backend services and data models}
+        \resumeItem{Integrated an \textbf{AI agent} that gives users business context, guides them through workflows and speeds up operational tasks}
+        \resumeItem{Built a production scheduling optimizer with \textbf{CP-SAT} that proposes plans minimizing late orders, total delay, changeovers and disruption to the current schedule}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {AI Engineer Intern}{Jul 2025 -- Sep 2025}
+      {Accenture}{Barcelona, Spain}
+      \resumeItemListStart
+        \resumeItem{Developed a system of \textbf{AI agents} that creates and updates knowledge graphs across multiple domains to power an efficient \textbf{GraphRAG} system, using \textbf{Neo4j} and deploying on \textbf{AWS}}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {AI Engineer Intern}{Jul 2024 -- Sep 2024}
+      {Accenture}{Barcelona, Spain}
+      \resumeItemListStart
+        \resumeItem{Helped develop and ship an AI chatbot and generative assistant service on the \textbf{OpenAI API} and \textbf{AWS}}
+        \resumeItem{Did the prompt engineering and database changes that improved the experience and the accuracy of its answers}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\href{https://github.com/nicorosaless/musespark-openchallenge}{\textbf{\underline{Open Kernel Challenge}}} $|$ \emph{CUDA, Triton, H200}}{Oct -- Nov 2026}
+          \resumeItemListStart
+            \resumeItem{Wrote custom kernels for a Muse Spark decoder layer, timed against \textbf{SGLang} on an H200: \textbf{1.68$\times$} on the full layer, \textbf{1.86$\times$} on the NVFP4 MoE and \textbf{1.80$\times$} on paged FP8 attention decode}
+            \resumeItem{Fused QK-norm, RoPE, KV-cache write and attention in one pass; cut the FP4 weight decode from 15 to 11 ops per word by reordering bits, worth +17\% on the MoE}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://github.com/nicorosaless/LocalWhisper}{\textbf{\underline{LocalWhisper}}} $|$ \emph{Swift, MLX, whisper.cpp}}{2026}
+          \resumeItemListStart
+            \resumeItem{macOS menu bar app for fully local speech-to-text on a hotkey that pastes into the active app}
+            \resumeItem{Hand-wrote the \textbf{Qwen3-ASR} forward pass in Swift/MLX, reaching a real-time factor of \textbf{0.06} on Apple Silicon}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://github.com/nicorosaless/bitsxlamarato25}{\textbf{\underline{NEST}}} $|$ \emph{Python, scikit-learn, TypeScript}}{Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Risk stratification tool for NSMP endometrial cancer built at BitsxlaMarató with BSC and the Catalan Institute of Oncology: \textbf{94.9\%} accuracy predicting recurrence, plus Cox survival curves per patient}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://github.com/nicorosaless/CooperGraph}{\textbf{\underline{CooperGraph}}} $|$ \emph{Python, D3, ElevenLabs}}{Oct 2025}
+          \resumeItemListStart
+            \resumeItem{Knowledge graph of 600+ NASA space biology papers with a hybrid recommender and a voice agent to navigate it}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------AWARDS-----------
+\section{Hackathon Wins}
+  \begin{itemize}[leftmargin=0.15in, label={}, topsep=2pt, itemsep=0pt]
+    \resumeProjectHeading{\textbf{Respira Hackathon} -- Early COPD challenge (AstraZeneca, CIBERES): COPD on CT at 0.91 AUC}{Oct 2026}
+    \resumeProjectHeading{\textbf{FME UPC Datathon} -- Mango challenge: 1st of 26 teams forecasting garment production}{Nov 2025}
+    \resumeProjectHeading{\textbf{AI Voice Hackathon} (Enzo Ventures, Murphy, ElevenLabs): conversational client-simulation agent}{Sep 2025}
+    \resumeProjectHeading{\textbf{HackUDC} -- Kelea challenge: Sentikelia, an LLM mental health assistant}{Feb 2025}
+    \resumeProjectHeading{\textbf{HackEPS} -- eCityclic AI challenge: transformer recommender for city council procedures}{Nov 2024}
+  \end{itemize}
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C++/CUDA, Swift, TypeScript, SQL} \\
+     \textbf{ML}{: PyTorch, Triton, MLX, scikit-learn, CatBoost, TensorFlow, Hugging Face} \\
+     \textbf{Systems}{: AWS, Neo4j, Docker, Slurm (MareNostrum 5), FastAPI, React, Git}
+    }}
+ \end{itemize}
+
+\end{document}
