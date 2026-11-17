@@ -5,3 +5,4 @@ dist/
 # Local scratch data
 all_repos.json
 github_data.json
+.playwright-mcp/
