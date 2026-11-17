@@ -1,0 +1,20 @@
+1:"$Sreact.fragment"
+2:I[9821,["/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js","/maps/slides/_next/static/chunks/3hvsfsix6yd_x.js","/maps/slides/_next/static/chunks/3suzuq1r9wta5.js","/maps/slides/_next/static/chunks/2477q8ojsgx_h.js"],"Deck"]
+3:I[29078,["/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[29078,["/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js"],"ViewportBoundary"]
+9:I[29078,["/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js"],"MetadataBoundary"]
+a:I[30418,["/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js"],"IconMark"]
+c:I[43206,["/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js"],"default"]
+d:I[1752,["/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js"],"default"]
+:HL["/maps/slides/_next/static/chunks/2v7u_8vgb4hc2.css","style"]
+7:X
+0:{"buildId":"dqxYdw5l0yCuAcRc59o7K","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/maps/slides/_next/static/chunks/3hvsfsix6yd_x.js","async":true}],["$","script","script-1",{"src":"/maps/slides/_next/static/chunks/3suzuq1r9wta5.js","async":true}],["$","script","script-2",{"src":"/maps/slides/_next/static/chunks/2477q8ojsgx_h.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"MAPS · daño pulmonar en la EPOC precoz"}],["$","meta","1",{"name":"description","content":"Dos medidas de la TC que siguen la obstrucción, con un acuerdo alto entre los dos filtros del escáner de la misma imagen."}],["$","link","2",{"rel":"icon","href":"/maps/slides/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","$La","3",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@b","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/maps/slides/_next/static/chunks/2v7u_8vgb4hc2.css","precedence":"next"}],["$","script","script-0",{"src":"/maps/slides/_next/static/chunks/08bwhmjyb9nk0.js","async":true}]],["$","html",null,{"lang":"es","className":"geistsans_d5a4f12f-module__Z73m_W__variable geistmono_157ca88a-module__-_v-OW__variable h-full antialiased","children":["$","body",null,{"className":"min-h-full","children":["$","$Lc",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]}]]}],"isPartial":"$@e","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@f","rootVaryParams":null,"needsRuntimeRequest":"$@10"}
+5:null
+7:300
+10:true
+7:C
+f:0
+b:"$undefined"
+e:"$undefined"
+6:"$undefined"
