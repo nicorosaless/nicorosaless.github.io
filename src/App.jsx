@@ -5,7 +5,6 @@ import { hackathons, jobs, links } from "./data/profile";
 import Timeline from "./components/Timeline";
 import Interests from "./components/Interests";
 import SoleSpaceDemo from "./components/SoleSpaceDemo";
-import GeoField from "./components/GeoField";
 
 const HOME_URL = import.meta.env.BASE_URL;
 const BLOG_URL = `${HOME_URL}blog/`;
@@ -275,7 +274,6 @@ export default function App() {
 
   return (
     <div className="site">
-      <GeoField />
       <main className={`site-shell site-shell--${route.page}`}>
         <TopBar page={route.page} theme={theme} onThemeToggle={toggleTheme} />
         {page}
